@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-const ViewReview = (props) => {
-    const {review} = props
-    const CardStyle = styled.div`
+
+const CardStyle = styled.div`
     h1{
     transform: translateY(50%);
     text-align: center;
@@ -52,20 +51,25 @@ const ViewReview = (props) => {
     };
     `
 
+const ViewReview = (props) => {
+    const {review} = props
+
     return (
-        <CardStyle className="review" key={review.id}>
-            <div className="image">
-                <h1>{review.body}</h1>
-            </div>
-            <div className="info">
-                <div className="tooltip">
-                <h1 style = {{color: review.rating < 3 ? "red" : review.rating < 4 ? "blue" : "green"}} className="ratingCard">{review.rating}</h1>
-                <span className="tooltiptext">{review.rating < 3 ? <p>Bad review</p>: review.rating < 4 ? <p>Average review</p> : <p>Good review</p>}</span>
+        <div>  
+            <CardStyle className="review" key={review.id}>
+                <div className="image">
+                    <h1>{review.body}</h1>
                 </div>
-                <h2>Author: {review.author}</h2>
-                <h2>Date: {review.publish_date.slice(0,10)}</h2>
-            </div>
-      </CardStyle>
+                <div className="info">
+                    <div className="tooltip">
+                    <h1 style = {{color: review.rating < 3 ? "red" : review.rating < 4 ? "blue" : "green"}} className="ratingCard">{review.rating}</h1>
+                    <span className="tooltiptext">{review.rating < 3 ? <p>Bad review</p>: review.rating < 4 ? <p>Average review</p> : <p>Good review</p>}</span>
+                    </div>
+                    <h2>Author: {review.author}</h2>
+                    <h2>Date: {review.publish_date.slice(0,10)}</h2>
+                </div>
+            </CardStyle>
+        </div>
     );
   }
   

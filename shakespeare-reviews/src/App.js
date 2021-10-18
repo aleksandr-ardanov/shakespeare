@@ -7,6 +7,7 @@ import Filters from './components/Filters';
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button';
 import ViewReview from './components/ViewReview'
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
 
@@ -20,23 +21,28 @@ function App() {
   const [itemsPerPage] = useState(9);
   const [reviews,setReviews] = useState([]) 
   const [data,setData] = useState([])
+  const [loading,setLoading] = useState(true)
+
   const onChange = page => {
     setCurrentPage(page);
   };
+  
   const indexOfLastReview = currentPage * itemsPerPage;
   const indexOfFirstReview = indexOfLastReview - itemsPerPage;
   const currentReviews = data.slice(indexOfFirstReview, indexOfLastReview);
 
   useEffect(() => {
+    setLoading(true)
     axiosWithAuth()
     .get('/')
     .then(res => {
       setReviews(res.data)
+      setLoading(false)
     })
     .catch(err => {
       console.log(err.response)
     })
-  },[])
+  },[setLoading])
 
   useEffect(() => {
     const filtered = [...reviews]
@@ -48,6 +54,15 @@ function App() {
       <h1>no reviews to display</h1>
     </div>
     )
+  
+  const load = () => {
+    return (
+      <div className='loadingBar'>
+      <h2>Loading...</h2>
+      <CircularProgress/>
+      </div>
+    )
+  }
 
   const list = currentReviews.map(review => {
     return(
@@ -82,7 +97,8 @@ function App() {
         <Route path="/">
           <Filters reviews = {reviews} data = {data} setData = {setData} setCurrentPage = {setCurrentPage}/>
           <div className = 'reviews'>
-          {data.length === 0 ? noReviews : list}
+          
+          {loading ? load() : data.length === 0 ? noReviews : list}
           </div>
           <section className="pagination">
               <Pagination

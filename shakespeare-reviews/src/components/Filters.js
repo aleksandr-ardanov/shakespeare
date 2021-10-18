@@ -57,7 +57,7 @@ const Filters = props => {
             else if (order === 'desc' &&  typeOfKey === "rating"){
                 arr_key_val.sort((a,b) => b-a)
             }
-            
+
             for (let i = 0;i<arr_key_val.length;i++){
                 for (let j = 0;j<data.length;j++){
                     if (data[j][typeOfKey] === arr_key_val[i]){
@@ -109,9 +109,9 @@ const Filters = props => {
                 <option value = 'publish_date'>Date</option>
                 <option value = 'author'>Author</option>
             </select>
-            <button className = "fButton" onClick = {() => filterByData(sortBySelected,'asc')}>Filter Asc ↑</button>
-            <button className = "fButton" onClick = {() => filterByData(sortBySelected,'desc')}>Filter Desc ↓</button>
-            <button className = "fButton" onClick={() => clean()}type="button">Reset</button>
+            <button className = "fButton asc" onClick = {() => filterByData(sortBySelected,'asc')}>Filter Asc ↑</button>
+            <button className = "fButton desc" onClick = {() => filterByData(sortBySelected,'desc')}>Filter Desc ↓</button>
+            <button className = "fButton reset" onClick={() => clean()}type="button">Reset</button>
             </div>
         </div>
     )

@@ -65,7 +65,7 @@ const ViewReview = (props) => {
                     <h1 style = {{color: review.rating < 3 ? "red" : review.rating < 4 ? "blue" : "green"}} className="ratingCard">{review.rating}</h1>
                     <span className="tooltiptext">{review.rating < 3 ? <p>Bad review</p>: review.rating < 4 ? <p>Average review</p> : <p>Good review</p>}</span>
                     </div>
-                    <h2>Author: {review.author}</h2>
+                    <h2 className = "author">Author: {review.author}</h2>
                     <h2>Date: {review.publish_date.slice(0,10)}</h2>
                 </div>
             </CardStyle>

@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Reviews</h1>
+        <h1>Shakespeare's reviews</h1>
         <div className='headerLinks'>
         <Link style = {linkStyle} to="/">Home</Link>
         </div>
